@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
+import Notifications from '../schema/Notifications';
 import authConfig from '../../config/auth'
 
 class SessionController {
@@ -18,6 +19,10 @@ class SessionController {
 
     const {id, name} = user
 
+    const LoginNotify = await Notifications.create({
+      content: `usuario logado ${name}`,
+      user:id,
+    })
 
 
     return res.status(200).json({
@@ -28,7 +33,8 @@ class SessionController {
       },
       token: jwt.sign({id}, authConfig.secret,{
         expiresIn: authConfig.expireIn,
-      })
+      }),
+      LoginNotify
     })
 
   }
