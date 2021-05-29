@@ -5,18 +5,19 @@ const NotificationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  user:{
+  user: {
     type: Number,
     required: true
   },
-  read:{
+  read: {
     type: Boolean,
     required: true,
     default: false
   }
 },
-{
-  timestamps: true,
-})
+  {
+    timestamps: true,
+  }
+)
 
-export default mongoose.model('Notifications', NotificationSchema);
+export default mongoose.model('Notifications',  NotificationSchema)

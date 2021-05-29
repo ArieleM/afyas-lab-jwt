@@ -17,7 +17,9 @@ class Database{
     models.map(model => model.init(this.connection));
   }
   mongo(){
-    this.mongoConnection = mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0.x3spq.mongodb.net/afya',{ useNewUrlParser: true, useUnifiedTopology: true })
+    this.mongoConnection = mongoose.connect(
+      'mongodb+srv://omnistack:omnistack@cluster0.x3spq.mongodb.net/afya?retryWrites=true&w=majority',
+      { useNewUrlParser: true, useUnifiedTopology: true })
   }
 }
 

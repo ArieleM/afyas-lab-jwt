@@ -8,17 +8,25 @@ import authMiddleware from './app/middlewares/auth'
 
 const routes = new Router();
 
-routes.post('/session', SessionController.store);
-routes.post('/users', UserController.store);
+routes.get('/', (req, res) => {
+  res.json({ message: 'Okay' })
+})
+
+// Criar usuário
+routes.post('/users', UserController.store)
 
 
-routes.use(authMiddleware);
+// Logar
+routes.post('/session', SessionController.store)
 
-routes.post('/dashboard', UserController.index);
+// Autenticação
+routes.use(authMiddleware)
 
+// Logar
+routes.post('/dashboard', UserController.index)
 
-routes.get('/notifications', NotificationsController.index);
-routes.put('/notifications', NotificationsController.update);
-
+// Notifications
+routes.get('/notifications', NotificationsController.index)
+routes.put('/notifications/:id', NotificationsController.update)
 
 export default routes;

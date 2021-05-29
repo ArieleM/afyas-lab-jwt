@@ -1,17 +1,24 @@
-import User from '../models/User';
 import Notification from '../schema/Notifications';
 
 class NotificationsController{
-  async index(){
+  
+  async index(req, res){
     const notification = await Notification.find({
       user: req.userId
     })
+    // res.json({message:notification})
 
+    return res.json({notification})
+  }
+
+  async update(req, res){
+    const notification = await Notification.findByIdAndUpdate(
+      req.params.id,
+      { read: true },
+      { new: true }
+    )
 
     return res.json(notification)
-  }
-  async update(req, res){
-    return res.json({message: 'Notificações'})
   }
 
 }
