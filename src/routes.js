@@ -3,6 +3,7 @@ import { Router } from 'express';
 import UserController from './app/controller/UserController'
 import SessionController from './app/controller/SessionController'
 import NotificationsController from './app/controller/NotificationsController'
+import InfoController from './app/controller/InfoController'
 import authMiddleware from './app/middlewares/auth'
 
 
@@ -21,6 +22,10 @@ routes.post('/session', SessionController.store)
 
 // Autenticação
 routes.use(authMiddleware)
+
+//Relacionamento de tabelas
+routes.post('/info', InfoController.store)
+routes.put('/info/:id', InfoController.update)
 
 // Logar
 routes.post('/dashboard', UserController.index)

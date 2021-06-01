@@ -6,7 +6,6 @@ class NotificationsController{
     const notification = await Notification.find({
       user: req.userId
     })
-    // res.json({message:notification})
 
     return res.json({notification})
   }
